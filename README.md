@@ -3,10 +3,11 @@ This is a utility to update version in all necessary files.
 
 Sometimes there are too many files in the project which contains project version as hardcoded. For example you would be having files bower.json and setup.py on same version in your project. Whenever the version is wanted to upgrade, all files were updated one by one. With this one, all implemented files can be update at once simply. 
 
-This is installed into your python and the commands below can be access from command line directly directly.
+This is installed into your python virtualenvironment and the commands below can be access from command-line directly.
 
 ## Installation
 ```
+#Activate your virtuanenvironment and run this.
 pip install git+https://github.com/javrasya/version-updater.git
 ```
 
