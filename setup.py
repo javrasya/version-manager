@@ -24,7 +24,7 @@ setup(
     description="Version upgrader in all spesific files like setup.py, package.json, bower.json etc.",
     author="Ahmet DAL",
     author_email="ceahmetdal@gmail.com",
-    url="https://github.com/javrasya/version-upgrader",
+    url="https://github.com/javrasya/version-updater",
     platforms=['any'],
     license='BSD',
     packages=find_packages(),
