@@ -7,7 +7,7 @@ This is installed into your python and the commands below can be access from com
 
 ## Installation
 ```
-pip install git+ssh://git@github.com:javrasya/version-updater.git
+pip install git+https://github.com/javrasya/version-updater.git
 ```
 
 
