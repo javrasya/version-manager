@@ -1,0 +1,10 @@
+{
+  "files": [
+    {
+      "name": "test_files"
+    }
+  ],
+  "excludes": [
+    "test_excludes"
+  ]
+}

@@ -10,7 +10,7 @@ etc/static_collected
 docs
 settings/dev-m2.py
 npm-debug.log
-.idea
+.idea/
 .tox*
 junit-*.xml
 *.log
@@ -20,3 +20,6 @@ celerybeat-schedule
 Berksfile.lock
 target
 *.iml
+.eggs/
+build/
+dist/
