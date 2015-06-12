@@ -1,4 +1,6 @@
-# Version Updater
+# Version Updater 
+[![Build Status](https://travis-ci.org/javrasya/version-updater.svg)](https://travis-ci.org/javrasya/version-updater)
+
 This is a utility to update version in all necessary files. 
 
 Sometimes there are too many files in the project which contains project version as hardcoded. For example you would be having files bower.json and setup.py on same version in your project. Whenever the version is wanted be to upgrade, all files were updated one by one. With this one, all implemented files can be update simply at once. It will find your version files and update them one by one.
