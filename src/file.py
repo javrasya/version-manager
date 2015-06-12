@@ -11,6 +11,27 @@ version_pattern = re.compile(r'((\d)+.?)+')
 
 
 class File:
+    """
+    # current_version test
+    >>> from os.path import dirname
+    >>> file = File("test_file",os.path.join(dirname(dirname(__file__)),'test_resources','test_file'),'(?P<match_left>version\s*=\s*(?:"))(?P<version>(?:(?:\d+)+.?)+)(?P<match_right>")')
+    >>> file.current_version
+    '0.2.0'
+
+    # update_version test
+    >>> file.update_version('0.2.1')
+    File /Users/ahmetdal/workspace/version-updater/test_resources/test_file is now on version 0.2.0
+    File /Users/ahmetdal/workspace/version-updater/test_resources/test_file is updated to version 0.2.1
+    <BLANKLINE>
+    >>> file.current_version
+    '0.2.1'
+    >>> file.update_version('0.2.0')
+    File /Users/ahmetdal/workspace/version-updater/test_resources/test_file is now on version 0.2.1
+    File /Users/ahmetdal/workspace/version-updater/test_resources/test_file is updated to version 0.2.0
+    <BLANKLINE>
+
+    """
+
     def __init__(self, name, path, regex):
         self.name = name
         self.path = path
@@ -63,6 +84,27 @@ loaded_files = []
 
 
 class FileLoader:
+    """
+    >>> from shutil import copyfile
+    >>> import os
+    >>> from os.path import dirname
+
+    >>> file_loader=FileLoader()
+    >>> file_loader.load()
+    >>> loaded_files
+    []
+
+    >>> copyfile(os.path.join(dirname(dirname(__file__)),'test_resources','test_file'),os.path.join(os.getcwd(),'setup.py'))
+    >>> file_loader.load()
+    >>> len(loaded_files)
+    1
+    >>> loaded_files[0].name
+    'setup.py'
+    >>> loaded_files[0].current_version
+    '0.2.0'
+    >>> os.remove(os.path.join(os.getcwd(),'setup.py'))
+    """
+
     def __init__(self):
         self.config = load_config()
         self.files = self.config.get("files", [])
