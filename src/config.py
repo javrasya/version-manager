@@ -39,27 +39,6 @@ _INITIAL_CONFIG = {
 
 
 def load_config():
-    """
-    # This is default case which there is not .vurc file in user home and current directories.
-    >>> config=load_config()
-    >>> _INITIAL_CONFIG==config
-    True
-
-
-    # This is the case which the config is extended from .vurc file in current directory.
-    >>> from shutil import copyfile
-    >>> import os
-    >>> from os.path import dirname
-    >>> copyfile(os.path.join(dirname(dirname(__file__)),'test_resources','.vurc'),os.path.join(os.getcwd(),'.vurc'))
-    >>> config=load_config()
-    >>> expected_config=deepcopy(_INITIAL_CONFIG)
-    >>> expected_config["files"].append({"name":"test_files"})
-    >>> expected_config["excludes"].append("test_excludes")
-    >>> config == expected_config
-    True
-    >>> os.remove(os.path.join(os.getcwd(),'.vurc'))
-    """
-
     _LOADED_CONFIG = deepcopy(_INITIAL_CONFIG)
     for lookup_path in _RC_LOOKUP_PATHS:
         try:
