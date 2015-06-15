@@ -14,7 +14,7 @@ pip install git+https://github.com/javrasya/version-updater.git
 ```
 
 
-## Supported Functionality
+## Supported Functionalities
 ### See Current Version
 To see current version of files.
 ```bash
