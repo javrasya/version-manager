@@ -23,3 +23,4 @@ target
 .eggs/
 build/
 dist/
+.coverage

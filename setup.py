@@ -19,7 +19,7 @@ except IOError:
     long_description = ''
 
 setup(
-    name='version-upgrader',
+    name='version-updater',
     version='0.2.2',
     description="Version upgrader in all spesific files like setup.py, package.json, bower.json etc.",
     author="Ahmet DAL",
