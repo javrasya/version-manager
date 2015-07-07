@@ -1,7 +1,7 @@
-# Version Updater 
+# Version Manager 
 [![Build Status](https://travis-ci.org/javrasya/version-updater.svg)](https://travis-ci.org/javrasya/version-updater) [![Coverage Status](https://coveralls.io/repos/github/javrasya/version-updater/badge.svg?branch=master)](https://coveralls.io/github/javrasya/version-updater?branch=master)
 
-This is a utility to update version in all necessary files. 
+This is a utility to manage versions in all necessary files.(see,update, etc.) 
 
 Sometimes there are too many files in the project which contains project version as hardcoded. For example you would be having files bower.json and setup.py on same version in your project. Whenever the version is wanted be to upgrade, all files were updated one by one. With this one, all implemented files can be update simply at once. It will find your version files and update them one by one.
 
