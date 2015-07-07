@@ -1,5 +1,5 @@
 # Version Manager 
-[![Build Status](https://travis-ci.org/javrasya/version-updater.svg)](https://travis-ci.org/javrasya/version-updater) [![Coverage Status](https://coveralls.io/repos/github/javrasya/version-updater/badge.svg?branch=master)](https://coveralls.io/github/javrasya/version-updater?branch=master)
+[![Build Status](https://travis-ci.org/javrasya/version-manager.svg)](https://travis-ci.org/javrasya/version-updater) [![Coverage Status](https://coveralls.io/repos/github/javrasya/version-manager/badge.svg?branch=master)](https://coveralls.io/github/javrasya/version-updater?branch=master)
 
 This is a utility to manage versions in all necessary files.(see,update, etc.) 
 
