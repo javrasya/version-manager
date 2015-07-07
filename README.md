@@ -53,16 +53,16 @@ $ previous_version
 
 ## Implement Your Custom Files
 
-Any file implementation can be added simply. `version-manager` reads extra config from `.vurc` file under your current directory or your user home directory. 
+Any file implementation can be added simply. `version-manager` reads extra config from `.vmrc` file under your current directory or your user home directory. 
 
-Here is a simple example of `.vurc`
+Here is a simple example of `.vmrc`
 
 ```bash
-$ vi ~/.vurc
+$ vi ~/.vmrc
 ```
 or
 ```bash
-$ vi /path/to/your_project/.vurc
+$ vi /path/to/your_project/.vmrc
 ```
 
 ```javascript

@@ -5,7 +5,7 @@ from colorama import Fore
 
 __author__ = 'ahmetdal'
 
-_RC_FILE = '.vurc'
+_RC_FILE = '.vmrc'
 
 _RC_LOOKUP_PATHS = [
     expanduser("~/"),
