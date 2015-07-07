@@ -10,7 +10,7 @@ This is installed into your python virtualenvironment and the commands below can
 ## Installation
 ```bash
 #Activate your virtuanenvironment and run this.
-pip install git+https://github.com/javrasya/version-updater.git
+(sudo) pip install git+https://github.com/javrasya/version-manager.git
 ```
 
 
