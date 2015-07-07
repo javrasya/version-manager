@@ -1,7 +1,7 @@
 # Version Manager 
-[![Build Status](https://travis-ci.org/javrasya/version-manager.svg)](https://travis-ci.org/javrasya/version-updater) [![Coverage Status](https://coveralls.io/repos/github/javrasya/version-manager/badge.svg?branch=master)](https://coveralls.io/github/javrasya/version-manager?branch=master)
+[![Build Status](https://travis-ci.org/javrasya/version-manager.svg)](https://travis-ci.org/javrasya/version-manager) [![Coverage Status](https://coveralls.io/repos/github/javrasya/version-manager/badge.svg?branch=master)](https://coveralls.io/github/javrasya/version-manager?branch=master)
 
-This is a utility to manage versions in all necessary files.(see,update, etc.) 
+This is a utility to manage versions in all necessary files in one place.(see,update, etc.) 
 
 Sometimes there are too many files in the project which contains project version as hardcoded. For example you would be having files bower.json and setup.py on same version in your project. Whenever the version is wanted be to upgrade, all files were updated one by one. With this one, all implemented files can be update simply at once. It will find your version files and update them one by one.
 
@@ -53,7 +53,7 @@ $ previous_version
 
 ## Implement Your Custom Files
 
-Any file implementation can be added simply. `version-updater` reads extra config from `.vurc` file under your current directory or your user home directory. 
+Any file implementation can be added simply. `version-manager` reads extra config from `.vurc` file under your current directory or your user home directory. 
 
 Here is a simple example of `.vurc`
 
