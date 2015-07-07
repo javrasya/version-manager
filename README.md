@@ -79,8 +79,8 @@ $ vi /path/to/your_project/.vurc
             'name': 'my_custom_file.xml',
             'parser': 'xml',
             'kwargs':{
-            	'xpaths': ['./ns:path1/ns:path2'],
-            	'namespaces':{'':'my-name-space-uri'}
+            	'xpaths': ['./ns:path1/ns:version'],
+            	'namespaces':{'my_namespace':'my-name-space-uri'}
             }
 		}		
 	]
