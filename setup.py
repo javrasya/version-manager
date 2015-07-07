@@ -20,7 +20,7 @@ except IOError:
 
 setup(
     name='version-updater',
-    version='0.3.0',
+    version='0.4.0',
     description="Version upgrader in all spesific files like setup.py, package.json, bower.json etc.",
     author="Ahmet DAL",
     author_email="ceahmetdal@gmail.com",
