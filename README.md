@@ -51,7 +51,7 @@ $ previous_version
 * <span style="color:magenta;">pom.xml - MAGENTA</span>
 
 
-## Implement Your Custom Files
+## Implement for Your Custom Files
 
 Any file implementation can be added simply. `version-manager` reads extra config from `.vmrc` file under your current directory or your user home directory. 
 
