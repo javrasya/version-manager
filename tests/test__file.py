@@ -5,27 +5,30 @@ from StringIO import StringIO
 import sys
 
 from src.file import File
+from src.parser import RegexParser
 
 __author__ = 'ahmetdal'
 
 
 class test_File(TestCase):
     def setUp(self):
-        self.file = File("test_file", os.path.join(dirname(dirname(__file__)), 'test_resources', 'test_file'), '(?P<match_left>"version"\s*:\s*(?:"))(?P<version>(?:(?:\d+)+.?)+)(?P<match_right>")')
+        parser = RegexParser(regex='(?P<match_left>"version"\s*:\s*(?:"))(?P<version>(?:(?:\d+)+.?)+)(?P<match_right>")')
+        self.file = File("test_file", os.path.join(dirname(dirname(__file__)), 'test_resources', 'test_file'), parser)
         self.file.update_version('0.2.0')
 
-    def test_regex_is_none(self):
+    def test_parser_none(self):
         try:
             File("test_file", os.path.join(dirname(dirname(__file__)), 'test_resources', 'test_file'), None)
             self.assertFalse(True)
         except Exception, e:
-            self.assertEqual("File release regex can not be None.", e.message)
+            self.assertEqual("Parser must be given.", e.message)
 
     def test_no_version_definition_is_found(self):
         out = StringIO()
         sys.stdout = out
         path = os.path.join(dirname(dirname(__file__)), 'test_resources', 'test_file')
-        self.file = File("test_file", path, '(?P<match_left>"version"\s*=\s*(?:"))(?P<version>(?:(?:\d+)+.?)+)(?P<match_right>")')
+        parser = RegexParser(regex='(?P<match_left>"version"\s*=\s*(?:"))(?P<version>(?:(?:\d+)+.?)+)(?P<match_right>")')
+        self.file = File("test_file", path, parser)
         self.assertIsNone(self.file.current_version)
         self.assertEqual("No version definition is found in file %s" % path, out.getvalue().strip())
 

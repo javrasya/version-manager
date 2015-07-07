@@ -15,15 +15,25 @@ _INITIAL_CONFIG = {
     'files': [
         {
             'name': 'setup.py',
-            'regex': '(?P<match_left>version\s*=\s*(?:"|\'))(?P<version>(?:(?:\d+)+.?)+)(?P<match_right>"|\')'
+            'parser': 'regexp',
+            'kwargs': {
+                'regex': '(?P<match_left>version\s*=\s*(?:"|\'))(?P<version>(?:(?:\d+)+.?)+)(?P<match_right>"|\')'
+            }
+
         },
         {
             'name': 'bower.json',
-            'regex': '(?P<match_left>"version"\s*:\s*(?:"|\'))(?P<version>(?:(?:\d+)+.?)+)(?P<match_right>"|\')'
+            'parser': 'regexp',
+            'kwargs': {
+                'regex': '(?P<match_left>"version"\s*:\s*(?:"|\'))(?P<version>(?:(?:\d+)+.?)+)(?P<match_right>"|\')'
+            }
         },
         {
             'name': 'package.json',
-            'regex': '(?P<match_left>"version"\s*:\s*(?:"|\'))(?P<version>(?:(?:\d+)+.?)+)(?P<match_right>"|\')'
+            'parser': 'regexp',
+            'kwargs': {
+                'regex': '(?P<match_left>"version"\s*:\s*(?:"|\'))(?P<version>(?:(?:\d+)+.?)+)(?P<match_right>"|\')'
+            }
         },
     ],
     'excludes': [

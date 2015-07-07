@@ -68,7 +68,10 @@ $ vi /path/to/your_project/.vurc
 	files : [
 		{
             'name': 'my_custom_file.txt',
-            'regex': '(?P<match_left>version=")(?P<version>\d+)(?P<match_right>")'		
+            'parser': 'regexp',
+            'kwargs':{
+            	'regex': '(?P<match_left>version=")(?P<version>\d+)(?P<match_right>")'
+            }
 		}
 	]
 }

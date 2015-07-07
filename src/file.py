@@ -2,6 +2,7 @@ import os
 import re
 from repoze.lru import CacheMaker
 from src.config import load_config
+from src.parser.parser import PARSER_REGISTRY
 
 cache_maker = CacheMaker()
 
@@ -11,44 +12,28 @@ version_pattern = re.compile(r'((\d)+.?)+')
 
 
 class File:
-    def __init__(self, name, path, regex):
+    def __init__(self, name, path, parser):
         self.name = name
         self.path = path
-        self.regex = regex
+        self.parser = parser
+        if not self.parser:
+            raise Exception("Parser must be given.")
         with open(self.path, 'r') as f:
             self.content = f.read()
-        if self.regex:
-            self.pattern = re.compile(self.regex)
-        else:
-            raise Exception("File release regex can not be None.")
 
     @property
     @cache_maker.lrucache(maxsize=300, name="current_version")
     def current_version(self):
-        match = self.pattern.search(self.content)
-        if match:
-            return match.group('version')
-        else:
+        current_version = self.parser.current_version(self.content)
+        if not current_version:
             print "No version definition is found in file %s" % self.path
-
-    def __validate_version(self, version):
-        return version_pattern.search(version) is not None
+        return current_version
 
     def update_version(self, new_version):
-        if not self.__validate_version(new_version):
-            raise Exception("Invalid version %s. Version should be in a pattern like %s" % (new_version, version_pattern.pattern))
-
         print 'File %s is now on version %s' % (self.path, self.current_version)
-        self.content = re.sub(
-            self.pattern,
-            lambda m:
-            m.group('match_left') + new_version + m.group('match_right'),
-            self.content,
-            re.MULTILINE
-        )
+        self.content = self.parser.update_version(self.content, new_version)
         with open(self.path, 'w') as f:
             f.write(self.content)
-
         cache_maker.clear("current_version")
         print 'File %s is updated to version %s\n' % (self.path, self.current_version)
 
@@ -84,7 +69,13 @@ class FileLoader:
             for f in files:
                 config_files = filter(lambda x: x.get('name') == f, self.files)
                 for config_file in config_files:
-                    loaded_files.append(File(config_file.get('name'), os.path.abspath(os.path.join(dirpath, f)), config_file.get('regex', None)))
+                    parser_type = config_file.get('parser', 'regexp')
+                    ParserClass = PARSER_REGISTRY.get(parser_type)
+                    if ParserClass:
+                        parser = ParserClass(*config_file.get('args', []), **config_file.get('kwargs', {}))
+                        loaded_files.append(File(config_file.get('name'), os.path.abspath(os.path.join(dirpath, f)), parser))
+                    else:
+                        raise Exception("No registered with parser type %s. Available parsers are %s" % (parser_type, ','.join(PARSER_REGISTRY.keys())))
 
 
 FileLoader().load()
