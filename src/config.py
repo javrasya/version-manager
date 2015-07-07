@@ -1,6 +1,7 @@
 from copy import deepcopy
 import json
 from os.path import expanduser
+from colorama import Fore
 
 __author__ = 'ahmetdal'
 
@@ -15,6 +16,7 @@ _INITIAL_CONFIG = {
     'files': [
         {
             'name': 'setup.py',
+            'color': Fore.GREEN,
             'parser': 'regexp',
             'kwargs': {
                 'regex': '(?P<match_left>version\s*=\s*(?:"|\'))(?P<version>(?:(?:\d+)+.?)+)(?P<match_right>"|\')'
@@ -23,6 +25,7 @@ _INITIAL_CONFIG = {
         },
         {
             'name': 'bower.json',
+            'color': Fore.YELLOW,
             'parser': 'regexp',
             'kwargs': {
                 'regex': '(?P<match_left>"version"\s*:\s*(?:"|\'))(?P<version>(?:(?:\d+)+.?)+)(?P<match_right>"|\')'
@@ -30,9 +33,19 @@ _INITIAL_CONFIG = {
         },
         {
             'name': 'package.json',
+            'color': Fore.RED,
             'parser': 'regexp',
             'kwargs': {
                 'regex': '(?P<match_left>"version"\s*:\s*(?:"|\'))(?P<version>(?:(?:\d+)+.?)+)(?P<match_right>"|\')'
+            }
+        },
+        {
+            'name': 'pom.xml',
+            'color': Fore.MAGENTA,
+            'parser': 'xml',
+            'kwargs': {
+                'xpaths': ['./mvn:version', './mvn:parent/mvn:version'],
+                'namespaces': {'mvn': 'http://maven.apache.org/POM/4.0.0'}
             }
         },
     ],

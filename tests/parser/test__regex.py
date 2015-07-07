@@ -17,7 +17,7 @@ class testRegexParser(TestCase):
             RegexParser()
             self.assertFalse(True)
         except Exception, e:
-            self.assertEqual("File release regex must be given for regex parser type.", e.message)
+            self.assertEqual("File version regex must be given for regex parser type.", e.message)
 
     def test_current_version(self):
         # current_version test

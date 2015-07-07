@@ -31,6 +31,7 @@ setup(
     zip_safe=False,
     install_requires=[
         'repoze.lru',
+        'colorama'
     ],
     include_package_data=True,
     entry_points=entrypoints,

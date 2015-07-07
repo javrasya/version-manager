@@ -43,10 +43,13 @@ $ previous_version
 * setup.py
 * bower.json
 * package.json
-
-### ComingSoon
 * pom.xml
 
+### Print Color
+* <span style="color:green;">setup.py - GREEN</span>
+* <span style="color:red;">package.json - RED</span>
+* <span style="color:yellow;background-color:grey">bower.json - YELLOW</span>
+* <span style="color:magenta;">pom.xml - MAGENTA</span>
 
 
 ## Implement Your Custom Files
@@ -63,7 +66,7 @@ or
 $ vi /path/to/your_project/.vurc
 ```
 
-```json
+```javascript
 {
 	files : [
 		{
@@ -72,7 +75,15 @@ $ vi /path/to/your_project/.vurc
             'kwargs':{
             	'regex': '(?P<match_left>version=")(?P<version>\d+)(?P<match_right>")'
             }
-		}
+		},
+		{
+            'name': 'my_custom_file.xml',
+            'parser': 'xml',
+            'kwargs':{
+            	'xpaths': ['./ns:path1/ns:path2'],
+            	'namespaces':{'':'my-name-space-uri'}
+            }
+		}		
 	]
 }
 ```

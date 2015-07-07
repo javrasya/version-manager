@@ -3,6 +3,7 @@ from unittest import TestCase
 from os.path import dirname
 from StringIO import StringIO
 import sys
+from colorama import Fore
 
 from src.file import File
 from src.parser import RegexParser
@@ -30,7 +31,7 @@ class test_File(TestCase):
         parser = RegexParser(regex='(?P<match_left>"version"\s*=\s*(?:"))(?P<version>(?:(?:\d+)+.?)+)(?P<match_right>")')
         self.file = File("test_file", path, parser)
         self.assertIsNone(self.file.current_version)
-        self.assertEqual("No version definition is found in file %s" % path, out.getvalue().strip())
+        self.assertEqual("%sNo version definition is found in file %s" % (Fore.WHITE, path), out.getvalue().strip())
 
     def test_current_version(self):
         # current_version test
