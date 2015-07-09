@@ -3,9 +3,9 @@
 
 This is a utility to manage versions in all necessary files in one place.(see,update, etc.) 
 
-Sometimes there are too many files in the project which contains project version as hardcoded. For example you would be having files bower.json and setup.py on same version in your project. Whenever the version is wanted be to upgrade, all files were updated one by one. With this one, all implemented files can be update simply at once. It will find your version files and update them one by one.
+Sometimes there are too many files in the project which contains project version. For example you would be having files such as bower.json and setup.py on same version in your project. Whenever the version is wanted be to upgraded, all files were updated one by one; now all implemented files can be update simply at once. It will find your versioning files and update them one by one.
 
-This is installed into your python virtualenvironment and the commands below can be access from command-line directly.
+This is installed into your python environment and the commands below can be access from command-line directly.
 
 ## Installation
 ```bash
@@ -53,7 +53,7 @@ $ previous_version
 
 ## Implement for Your Custom Files
 
-Any file implementation can be added simply. `version-manager` reads extra config from `.vmrc` file under your current directory or your user home directory. 
+Any file implementation can be added simply. `version-manager` reads extra config from `.vmrc` file under your current directory(project folder maybe) or your user home directory. 
 
 Here is a simple example of `.vmrc`
 
@@ -87,5 +87,5 @@ $ vi /path/to/your_project/.vmrc
 }
 ```
 
-Any famous file formats can be demanded as built-in by opening an issue. Feel free to demand it.
+Any famous file formats can be demanded as built-in by opening an issue. Feel free to demand it :-)
 
