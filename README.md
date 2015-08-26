@@ -9,7 +9,7 @@ This is installed into your python environment and the commands below can be acc
 
 ## Installation
 ```bash
-(sudo) pip install git+https://github.com/javrasya/version-manager.git
+(sudo) pip install version-manager
 ```
 
 

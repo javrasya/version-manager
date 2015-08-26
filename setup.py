@@ -19,12 +19,12 @@ except IOError:
     long_description = ''
 
 setup(
-    name='version-updater',
+    name='version-manager',
     version='0.4.0',
     description="Version upgrader in all spesific files like setup.py, package.json, bower.json etc.",
     author="Ahmet DAL",
     author_email="ceahmetdal@gmail.com",
-    url="https://github.com/javrasya/version-updater",
+    url="https://github.com/javrasya/version-manager",
     platforms=['any'],
     license='BSD',
     packages=find_packages(),
