@@ -4,9 +4,9 @@
 .. |Coverage Status| image:: https://coveralls.io/repos/github/javrasya/version-manager/badge.svg?branch=master
    :target: https://coveralls.io/github/javrasya/version-manager?branch=master
 
-.. |Current Version GIF|  image:: https://cloud.githubusercontent.com/assets/1279644/9853010/236b1a2e-5b0a-11e5-86a4-8ed4b897e729.gif
+.. |Current Version GIF|  image:: https://cloud.githubusercontent.com/assets/1279644/9853627/316aea20-5b0d-11e5-9b33-4cbd3bfe8169.gif
 
-.. |Update Version GIF|  image:: https://cloud.githubusercontent.com/assets/1279644/9853011/239e2018-5b0a-11e5-8cf5-8669fda959f1.gif
+.. |Update Version GIF|  image:: https://cloud.githubusercontent.com/assets/1279644/9853628/316f0498-5b0d-11e5-8bc1-a8d0447f085a.gif
 
 
 
