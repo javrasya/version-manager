@@ -23,6 +23,11 @@ Sometimes there are too many files in the project which contains project version
 
 This is installed into your python environment and the commands below can be access from command-line directly.
 
+Requirements
+============
+* ``Python 2.7`` or ``pypy2``
+
+
 Installation
 ============
 
