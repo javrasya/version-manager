@@ -73,30 +73,12 @@ Built-In Supported Files
 Print Color
 -----------
 
-
-.. raw:: html
-
-      <span style="color:green;">setup.py - GREEN</span>
-
-.. raw:: html
-
-      <span style="color:blue;">conf.py (version) - BLUE</span>
-
-.. raw:: html      
-
-      <span style="color:blue;">conf.py (release) - BLUE</span>
-
-.. raw:: html      
-
-      <span style="color:red;">package.json - RED</span>
-
-.. raw:: html      
-
-      <span style="color:yellow;background-color:grey">bower.json - YELLOW</span>
-
-.. raw:: html
-
-      <span style="color:magenta;">pom.xml - MAGENTA</span>
+* setup.py - GREEN
+* conf.py (version) - BLUE
+* conf.py (release) - BLUE
+* package.json - RED
+* bower.json - YELLOW
+* pom.xml - MAGENTA
 
 
 Implement for Your Custom Files
