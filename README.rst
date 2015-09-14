@@ -74,8 +74,8 @@ Print Color
 -----------
 
 * setup.py - GREEN
-* conf.py (version) - BLUE
-* conf.py (release) - BLUE
+* conf.py (version) (sphinx) - BLUE
+* conf.py (release) (sphinx) - BLUE
 * package.json - RED
 * bower.json - YELLOW
 * pom.xml - MAGENTA
