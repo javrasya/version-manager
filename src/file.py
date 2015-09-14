@@ -20,8 +20,12 @@ class File:
         self.color = color
         if not self.parser:
             raise Exception("Parser must be given.")
+
+    @property
+    @cache_maker.lrucache(maxsize=300, name="content")
+    def content(self):
         with open(self.path, 'r') as f:
-            self.content = f.read()
+            return f.read()
 
     @property
     @cache_maker.lrucache(maxsize=300, name="current_version")
@@ -33,10 +37,11 @@ class File:
 
     def update_version(self, new_version):
         print '%sFile %s is now on version %s' % (self.color, self.path, self.current_version)
-        self.content = self.parser.update_version(self.content, new_version)
+        new_content = self.parser.update_version(self.content, new_version)
         with open(self.path, 'w') as f:
-            f.write(self.content)
+            f.write(new_content)
         cache_maker.clear("current_version")
+        cache_maker.clear("content")
         print '%sFile %s is updated to version %s\n' % (self.color, self.path, self.current_version)
 
     def next_version(self):
