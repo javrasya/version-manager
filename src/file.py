@@ -87,3 +87,4 @@ class FileLoader:
 
 
 FileLoader().load()
+loaded_files = sorted(loaded_files, key=lambda f: f.name)
