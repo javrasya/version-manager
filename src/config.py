@@ -24,6 +24,24 @@ _INITIAL_CONFIG = {
 
         },
         {
+            'name': 'conf.py',
+            'color': Fore.BLUE,
+            'parser': 'regexp',
+            'kwargs': {
+                'regex': '(?P<match_left>version\s*=\s*(?:"|\'))(?P<version>(?:(?:\d+)+.?)+)(?P<match_right>"|\')'
+            }
+
+        },
+        {
+            'name': 'conf.py',
+            'color': Fore.BLUE,
+            'parser': 'regexp',
+            'kwargs': {
+                'regex': '(?P<match_left>release\s*=\s*(?:"|\'))(?P<version>(?:(?:\d+)+.?)+)(?P<match_right>"|\')'
+            }
+
+        },
+        {
             'name': 'bower.json',
             'color': Fore.YELLOW,
             'parser': 'regexp',
