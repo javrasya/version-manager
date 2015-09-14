@@ -32,17 +32,17 @@ class File:
     def current_version(self):
         current_version = self.parser.current_version(self.content)
         if not current_version:
-            print "%sNo version definition is found in file %s" % (self.color, self.path)
+            print("%sNo version definition is found in file %s" % (self.color, self.path))
         return current_version
 
     def update_version(self, new_version):
-        print '%sFile %s is now on version %s' % (self.color, self.path, self.current_version)
+        print('%sFile %s is now on version %s' % (self.color, self.path, self.current_version))
         new_content = self.parser.update_version(self.content, new_version)
         with open(self.path, 'w') as f:
             f.write(new_content)
         cache_maker.clear("current_version")
         cache_maker.clear("content")
-        print '%sFile %s is updated to version %s\n' % (self.color, self.path, self.current_version)
+        print('%sFile %s is updated to version %s\n' % (self.color, self.path, self.current_version))
 
     def next_version(self):
         raise NotImplementedError()

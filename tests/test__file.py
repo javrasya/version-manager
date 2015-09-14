@@ -1,12 +1,17 @@
 import os
 from unittest import TestCase
 from os.path import dirname
-from StringIO import StringIO
+
 import sys
 from colorama import Fore
 
 from src.file import File
 from src.parser import RegexParser
+
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import StringIO
 
 __author__ = 'ahmetdal'
 
@@ -21,8 +26,8 @@ class test_File(TestCase):
         try:
             File("test_file", os.path.join(dirname(dirname(__file__)), 'test_resources', 'test_file'), None)
             self.assertFalse(True)
-        except Exception, e:
-            self.assertEqual("Parser must be given.", e.message)
+        except Exception as e:
+            self.assertEqual("Parser must be given.", str(e))
 
     def test_no_version_definition_is_found(self):
         out = StringIO()
@@ -48,8 +53,8 @@ class test_File(TestCase):
         try:
             self.file.update_version('a.b.c')
             self.assertFalse(True)
-        except Exception, e:
-            self.assertTrue("Invalid version" in e.message)
+        except Exception as e:
+            self.assertTrue("Invalid version" in str(e))
         self.assertEqual('0.2.0', self.file.current_version)
 
     def test_next_version(self):

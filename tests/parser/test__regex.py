@@ -16,8 +16,8 @@ class testRegexParser(TestCase):
         try:
             RegexParser()
             self.assertFalse(True)
-        except Exception, e:
-            self.assertEqual("File version regex must be given for regex parser type.", e.message)
+        except Exception as e:
+            self.assertEqual("File version regex must be given for regex parser type.", str(e))
 
     def test_current_version(self):
         # current_version test
@@ -33,5 +33,5 @@ class testRegexParser(TestCase):
         try:
             self.parser.update_version(self.content, 'a.b.c')
             self.assertFalse(True)
-        except Exception, e:
-            self.assertTrue("Invalid version" in e.message)
+        except Exception as e:
+            self.assertTrue("Invalid version" in str(e))

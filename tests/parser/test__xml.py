@@ -17,8 +17,8 @@ class testXmlParser(TestCase):
         try:
             XMLParser()
             self.assertFalse(True)
-        except Exception, e:
-            self.assertEqual("File version xpaths must be given for xml parser type.", e.message)
+        except Exception as e:
+            self.assertEqual("File version xpaths must be given for xml parser type.", str(e))
 
     def test_current_version(self):
         # current_version test

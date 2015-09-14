@@ -1,8 +1,13 @@
 from __future__ import absolute_import
-from cStringIO import StringIO
+
 from xml.etree import ElementTree
 
 from src.parser.parser import Parser
+
+try:
+    from cStringIO import StringIO
+except ImportError:
+    from io import StringIO
 
 __author__ = 'ahmetdal'
 
@@ -18,7 +23,7 @@ class XMLParser(Parser):
         super(XMLParser, self).__init__()
         self.xpaths = xpaths
         self.namespaces = namespaces
-        for v in namespaces.itervalues():
+        for v in namespaces.values():
             ElementTree.register_namespace('', v)
 
         if not self.xpaths:

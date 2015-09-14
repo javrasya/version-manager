@@ -1,7 +1,12 @@
 language: python
 python: 2.7
 env:
-  - TOX_ENV=py27
+  global:
+    PYTHONUNBUFFERED=yes
+  matrix:
+    - TOXENV=py2.7
+    - TOXENV=pypy
+    - TOXENV=cov
 install:
   - pip install tox
   - pip install coveralls

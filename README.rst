@@ -4,6 +4,12 @@
 .. |Coverage Status| image:: https://coveralls.io/repos/github/javrasya/version-manager/badge.svg?branch=master
    :target: https://coveralls.io/github/javrasya/version-manager?branch=master
 
+.. |Current Version GIF|  image:: https://cloud.githubusercontent.com/assets/1279644/9853010/236b1a2e-5b0a-11e5-86a4-8ed4b897e729.gif
+
+.. |Update Version GIF|  image:: https://cloud.githubusercontent.com/assets/1279644/9853011/239e2018-5b0a-11e5-8cf5-8669fda959f1.gif
+
+
+
 
 ***************
 Version Manager
@@ -35,6 +41,7 @@ To see current version of files.
 
     $ current_version
 
+|Current Version GIF|
 
 Update version
 --------------
@@ -43,6 +50,8 @@ Any version can be set.
 .. code-block:: bash
 
     $ update_version 1.1.1
+
+|Update Version GIF|
 
 Next Version(Cooming Soon)
 --------------------------
