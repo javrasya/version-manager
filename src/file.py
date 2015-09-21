@@ -1,6 +1,7 @@
 import os
 import re
 from repoze.lru import CacheMaker
+import semver
 from src.config import load_config
 from src.parser.parser import PARSER_REGISTRY
 from colorama import Fore, Back, Style
@@ -13,6 +14,8 @@ version_pattern = re.compile(r'((\d)+.?)+')
 
 
 class File:
+    supported_bumps = ['major', 'minor', 'patch']
+
     def __init__(self, name, path, parser, color=Fore.WHITE):
         self.name = name
         self.path = path
@@ -44,11 +47,11 @@ class File:
         cache_maker.clear("content")
         print('%sFile %s is updated to version %s\n' % (self.color, self.path, self.current_version))
 
-    def next_version(self):
-        raise NotImplementedError()
-
-    def previous_version(self):
-        raise NotImplementedError()
+    def bump_version(self, bump):
+        if bump not in self.supported_bumps:
+            raise Exception('%s is not one among %s' % (bump, self.supported_bumps))
+        new_version = getattr(semver, 'bump_%s' % bump)(self.current_version)
+        self.update_version(new_version)
 
 
 loaded_files = []

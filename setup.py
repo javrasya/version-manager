@@ -7,7 +7,8 @@ from setuptools import setup, find_packages
 entrypoints = {}
 
 console_scripts = entrypoints['console_scripts'] = [
-    'update_version = src.bin.update_version:main',
+    'set_version = src.bin.set_version:main',
+    'bump_version = src.bin.bump_version:main',
     'current_version = src.bin.current_version:main',
 ]
 
@@ -31,7 +32,8 @@ setup(
     zip_safe=False,
     install_requires=[
         'repoze.lru',
-        'colorama'
+        'colorama',
+        'semver'
     ],
     include_package_data=True,
     entry_points=entrypoints,

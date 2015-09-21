@@ -57,16 +57,21 @@ class test_File(TestCase):
             self.assertTrue("Invalid version" in str(e))
         self.assertEqual('0.2.0', self.file.current_version)
 
-    def test_next_version(self):
-        try:
-            self.file.next_version()
-            self.assertFalse(True)
-        except NotImplementedError:
-            pass
+    def test_bump_version(self):
+        # update_version test
 
-    def test_previous_version(self):
+        self.assertEqual('0.2.0', self.file.current_version)
+        self.file.bump_version('patch')
+        self.assertEqual('0.2.1', self.file.current_version)
+        self.file.bump_version('minor')
+        self.assertEqual('0.3.0', self.file.current_version)
+        self.file.bump_version('patch')
+        self.assertEqual('0.3.1', self.file.current_version)
+        self.file.bump_version('major')
+        self.assertEqual('1.0.0', self.file.current_version)
+
         try:
-            self.file.previous_version()
+            self.file.bump_version('wrongbump')
             self.assertFalse(True)
-        except NotImplementedError:
-            pass
+        except Exception as e:
+            self.assertEqual("wrongbump is not one among ['major', 'minor', 'patch']", str(e))

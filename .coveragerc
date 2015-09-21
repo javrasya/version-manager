@@ -3,5 +3,4 @@ omit =
     tests/*
     */__init__*
     .tox/*
-    src/bin/*
     setup.py

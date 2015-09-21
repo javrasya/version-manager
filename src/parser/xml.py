@@ -57,7 +57,7 @@ class XMLParser(Parser):
 
 class CommentedTreeBuilder(ElementTree.XMLTreeBuilder):
     def __init__(self, html=0, target=None):
-        ElementTree.XMLTreeBuilder.__init__(self, html, target)
+        super(CommentedTreeBuilder, self).__init__(html, target)
         self._parser.CommentHandler = self.handle_comment
 
     def handle_comment(self, data):
