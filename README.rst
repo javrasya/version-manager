@@ -4,15 +4,15 @@
 .. |Coverage Status| image:: https://coveralls.io/repos/github/javrasya/version-manager/badge.svg?branch=master
    :target: https://coveralls.io/github/javrasya/version-manager?branch=master
 
-.. |Current Status GIF|  image:: https://cloud.githubusercontent.com/assets/1279644/10023914/1efcae4a-615d-11e5-9279-e3152a3bb73d.gif
+.. |Current Status GIF|  image:: https://cloud.githubusercontent.com/assets/1279644/10024585/9cd838f4-6160-11e5-9ef6-e53fb93e420c.gif
 
-.. |Set Version GIF|  image:: https://cloud.githubusercontent.com/assets/1279644/10023920/2e7e93a6-615d-11e5-9782-27ed38aaa43e.gif
+.. |Set Version GIF|  image:: https://cloud.githubusercontent.com/assets/1279644/10024586/9cdb2eec-6160-11e5-9116-16d60c122eee.gif
 
-.. |Bump Patch Version GIF|  image:: https://cloud.githubusercontent.com/assets/1279644/10023922/2ffb67e0-615d-11e5-9562-81f907125637.gif
+.. |Bump Patch Version GIF|  image:: https://cloud.githubusercontent.com/assets/1279644/10024588/9ce09044-6160-11e5-81e1-b2c4d743b137.gif
 
-.. |Bump Minor Version GIF|  image:: https://cloud.githubusercontent.com/assets/1279644/10023924/31706b84-615d-11e5-9ceb-1e6ed346f450.gif
+.. |Bump Minor Version GIF|  image:: https://cloud.githubusercontent.com/assets/1279644/10024587/9ce077f8-6160-11e5-9252-4a154ac4734d.gif
 
-.. |Bump Major Version GIF|  image:: https://cloud.githubusercontent.com/assets/1279644/10023926/33a2453a-615d-11e5-9f29-52c01f745c96.gif
+.. |Bump Major Version GIF|  image:: https://cloud.githubusercontent.com/assets/1279644/10024583/9ca330fa-6160-11e5-962e-ec63bef155fd.gif
 
 
 ***************
