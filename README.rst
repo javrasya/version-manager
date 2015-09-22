@@ -4,11 +4,15 @@
 .. |Coverage Status| image:: https://coveralls.io/repos/github/javrasya/version-manager/badge.svg?branch=master
    :target: https://coveralls.io/github/javrasya/version-manager?branch=master
 
-.. |Current Version GIF|  image:: https://cloud.githubusercontent.com/assets/1279644/9853627/316aea20-5b0d-11e5-9b33-4cbd3bfe8169.gif
+.. |Current Status GIF|  image:: https://cloud.githubusercontent.com/assets/1279644/10023914/1efcae4a-615d-11e5-9279-e3152a3bb73d.gif
 
-.. |Update Version GIF|  image:: https://cloud.githubusercontent.com/assets/1279644/9853628/316f0498-5b0d-11e5-8bc1-a8d0447f085a.gif
+.. |Set Version GIF|  image:: https://cloud.githubusercontent.com/assets/1279644/10023920/2e7e93a6-615d-11e5-9782-27ed38aaa43e.gif
 
+.. |Bump Patch Version GIF|  image:: https://cloud.githubusercontent.com/assets/1279644/10023922/2ffb67e0-615d-11e5-9562-81f907125637.gif
 
+.. |Bump Minor Version GIF|  image:: https://cloud.githubusercontent.com/assets/1279644/10023924/31706b84-615d-11e5-9ceb-1e6ed346f450.gif
+
+.. |Bump Major Version GIF|  image:: https://cloud.githubusercontent.com/assets/1279644/10023926/33a2453a-615d-11e5-9f29-52c01f745c96.gif
 
 
 ***************
@@ -33,47 +37,53 @@ Installation
 
 .. code-block:: bash
 
-    $ (sudo) pip install version-manager
+    $ (sudo) pip install version-manager --upgrade
 
 
 Supported Functionalities
 =========================
-See current version
--------------------
+Current Status
+--------------
+
 To see current version of files.
 
 .. code-block:: bash
 
-    $ current_version
+    $ versionmanager --status
 
-|Current Version GIF|
+|Current Status GIF|
 
-Update version
---------------
+Set version
+-----------
+
 Any version can be set.
 
 .. code-block:: bash
 
-    $ update_version 1.1.1
+    $ versionmanager --set 1.1.1
 
-|Update Version GIF|
+|Set Version GIF|
 
-Next Version(Cooming Soon)
---------------------------
-Simply upgrade to next version.
+Bump Version
+------------
 
-.. code-block:: bash
-
-    $ next_version
-
-Previous Version(Cooming Soon)
-------------------------------
-Simply downgrade to previous version.
+This is new functionality to upgrade version without knowing whole version string. It simply upgrade version as major, minor or patch as it is defined in SemVer.
 
 .. code-block:: bash
 
-    $ previous_version
+    $ versionmanager --bump major
 
+.. code-block:: bash
+
+    $ versionmanager --bump minor
+
+.. code-block:: bash
+
+    $ versionmanager --bump patch
+
+|Bump Patch Version GIF|
+|Bump Minor Version GIF|
+|Bump Major Version GIF|
 
 Built-In Supported Files
 ========================
@@ -137,4 +147,29 @@ or
 
 
 Any famous file formats can be demanded as built-in by opening an issue. Feel free to demand it :-)
+
+
+
+Change Logs
+===========
+
+0.6.0(Stable)
+-------------
+
+* **Improvement** - ``current_version`` and ``update_version`` are merged as subcomment under ``versionmanager`` consolescript. ``versionmanager --status``, ``versionmanager --set <version>`` and ``versionmanager --bump <level>`` are available instead of ``current_version`` and ``update_version <version>`` .
+* **Improvement** - SemVer support is added for bump versioning. ``versionmanager --bump <level>`` which level is one among (``major``,``minor``,``patch``)
+
+  
+0.5.1
+-----
+
+* **Improvement** - ``pypy`` support is added.
+* **Bug** - When there is multiple regex config for same file, one of them was being applied. It is fixed. (version and relase in Sphinx conf.py)
+
+
+0.5.0
+-----
+
+* **Improvement** - ``Sphinx`` ``conf.py`` support is added.
+* **Improvement** - README file is in rst format now.
 

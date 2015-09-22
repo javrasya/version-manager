@@ -39,13 +39,13 @@ class File:
         return current_version
 
     def update_version(self, new_version):
-        print('%sFile %s is now on version %s' % (self.color, self.path, self.current_version))
+        print('%sFile %s WAS on version %s' % (self.color, self.path, self.current_version))
         new_content = self.parser.update_version(self.content, new_version)
         with open(self.path, 'w') as f:
             f.write(new_content)
         cache_maker.clear("current_version")
         cache_maker.clear("content")
-        print('%sFile %s is updated to version %s\n' % (self.color, self.path, self.current_version))
+        print('%sFile %s IS NOW on version %s\n' % (self.color, self.path, self.current_version))
 
     def bump_version(self, bump):
         if bump not in self.supported_bumps:

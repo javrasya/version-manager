@@ -7,9 +7,7 @@ from setuptools import setup, find_packages
 entrypoints = {}
 
 console_scripts = entrypoints['console_scripts'] = [
-    'set_version = src.bin.set_version:main',
-    'bump_version = src.bin.bump_version:main',
-    'current_version = src.bin.current_version:main',
+    'versionmanager = src.bin.versionmanager:main',
 ]
 
 # -*- %%% -*-
