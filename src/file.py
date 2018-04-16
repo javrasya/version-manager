@@ -1,10 +1,13 @@
+import itertools
 import os
 import re
-from repoze.lru import CacheMaker
+
 import semver
+from colorama import Fore
+from repoze.lru import CacheMaker
+
 from src.config import load_config
 from src.parser.parser import PARSER_REGISTRY
-from colorama import Fore, Back, Style
 
 cache_maker = CacheMaker()
 
@@ -54,14 +57,24 @@ class File:
         self.update_version(new_version)
 
 
-loaded_files = []
+# loaded_files = []
 
 
 class FileLoader:
-    def __init__(self):
-        self.config = load_config()
-        self.files = self.config.get("files", [])
-        self.excludes = self.config.get("excludes", [])
+    def __init__(self, groups):
+        self._loaded_files = []
+        self.config = load_config(groups)
+
+    def _attrs(self, key):
+        return itertools.chain(*(v[key] for k, v in self.config.items()))
+
+    @property
+    def files(self):
+        return self._attrs("files")
+
+    @property
+    def excludes(self):
+        return self._attrs("excludes")
 
     def load(self):
         for dirpath, dirnames, files in os.walk('./'):
@@ -80,14 +93,17 @@ class FileLoader:
                 config_files = filter(lambda x: x.get('name') == f, self.files)
                 for config_file in config_files:
                     parser_type = config_file.get('parser', 'regexp')
-                    color = config_file.get('color', Fore.WHITE)
+                    color = eval("Fore." + config_file.get('color', "white").upper())
                     ParserClass = PARSER_REGISTRY.get(parser_type)
                     if ParserClass:
                         parser = ParserClass(*config_file.get('args', []), **config_file.get('kwargs', {}))
-                        loaded_files.append(File(config_file.get('name'), os.path.abspath(os.path.join(dirpath, f)), parser, color=color))
+                        self._loaded_files.append(File(config_file.get('name'), os.path.abspath(os.path.join(dirpath, f)), parser, color=color))
                     else:
                         raise Exception("No registered with parser type %s. Available parsers are %s" % (parser_type, ','.join(PARSER_REGISTRY.keys())))
 
+    @property
+    def loaded_files(self):
+        return sorted(self._loaded_files, key=lambda f: (f.color, f.name))
 
-FileLoader().load()
-loaded_files = sorted(loaded_files, key=lambda f: f.name)
+# FileLoader().load()
+# loaded_files = sorted(loaded_files, key=lambda f: f.name)

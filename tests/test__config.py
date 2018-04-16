@@ -10,15 +10,27 @@ __author__ = 'ahmetdal'
 
 class test_Config(TestCase):
     def test_load_config(self):
-        config = load_config()
-        self.assertEqual(_INITIAL_CONFIG, config)
+        config = load_config(["default"])
+        self.assertDictEqual(_INITIAL_CONFIG["groups"], config)
 
     def test_load_config_with_vmrc(self):
         # This is the case which the config is extended from .vmrc file in current directory.
         copyfile(os.path.join(dirname(dirname(__file__)), 'test_resources', _RC_FILE), os.path.join(os.getcwd(), _RC_FILE))
-        config = load_config()
+        config = load_config(["test"])
         expected_config = deepcopy(_INITIAL_CONFIG)
-        expected_config["files"].append({"name": "test_files"})
-        expected_config["excludes"].append("test_excludes")
+
+        expected_config = {
+            "test":
+                {
+                    "files": [
+                        {
+                            "name": "test_files"
+                        }
+                    ],
+                    "excludes": [
+                        "test_excludes"
+                    ]
+                }
+        }
         self.assertEqual(expected_config, config)
         os.remove(os.path.join(os.getcwd(), '.vmrc'))
