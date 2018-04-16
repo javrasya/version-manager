@@ -1,12 +1,13 @@
+import itertools
 import os
 import re
 
-import itertools
-from repoze.lru import CacheMaker
 import semver
+from colorama import Fore
+from repoze.lru import CacheMaker
+
 from src.config import load_config
 from src.parser.parser import PARSER_REGISTRY
-from colorama import Fore, Back, Style
 
 cache_maker = CacheMaker()
 
@@ -92,7 +93,7 @@ class FileLoader:
                 config_files = filter(lambda x: x.get('name') == f, self.files)
                 for config_file in config_files:
                     parser_type = config_file.get('parser', 'regexp')
-                    color = config_file.get('color', Fore.WHITE)
+                    color = eval("Fore." + config_file.get('color', "white").upper())
                     ParserClass = PARSER_REGISTRY.get(parser_type)
                     if ParserClass:
                         parser = ParserClass(*config_file.get('args', []), **config_file.get('kwargs', {}))
@@ -102,7 +103,7 @@ class FileLoader:
 
     @property
     def loaded_files(self):
-        return sorted(self._loaded_files, key=lambda f: f.name)
+        return sorted(self._loaded_files, key=lambda f: (f.color, f.name))
 
 # FileLoader().load()
 # loaded_files = sorted(loaded_files, key=lambda f: f.name)

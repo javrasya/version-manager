@@ -19,7 +19,7 @@ _INITIAL_CONFIG = {
             'files': [
                 {
                     'name': 'setup.py',
-                    'color': Fore.GREEN,
+                    'color': "GREEN",
                     'parser': 'regexp',
                     'kwargs': {
                         'regex': '(?P<match_left>version\s*=\s*(?:"|\'))(?P<version>(?:(?:\d+)+.?)+)(?P<match_right>"|\')'
@@ -28,7 +28,7 @@ _INITIAL_CONFIG = {
                 },
                 {
                     'name': 'conf.py',
-                    'color': Fore.BLUE,
+                    'color': "BLUE",
                     'parser': 'regexp',
                     'kwargs': {
                         'regex': '(?P<match_left>version\s*=\s*(?:"|\'))(?P<version>(?:(?:\d+)+.?)+)(?P<match_right>"|\')'
@@ -37,7 +37,7 @@ _INITIAL_CONFIG = {
                 },
                 {
                     'name': 'conf.py',
-                    'color': Fore.BLUE,
+                    'color': "BLUE",
                     'parser': 'regexp',
                     'kwargs': {
                         'regex': '(?P<match_left>release\s*=\s*(?:"|\'))(?P<version>(?:(?:\d+)+.?)+)(?P<match_right>"|\')'
@@ -46,7 +46,7 @@ _INITIAL_CONFIG = {
                 },
                 {
                     'name': 'bower.json',
-                    'color': Fore.YELLOW,
+                    'color': "YELLOW",
                     'parser': 'regexp',
                     'kwargs': {
                         'regex': '(?P<match_left>"version"\s*:\s*(?:"|\'))(?P<version>(?:(?:\d+)+.?)+)(?P<match_right>"|\')'
@@ -54,7 +54,7 @@ _INITIAL_CONFIG = {
                 },
                 {
                     'name': 'package.json',
-                    'color': Fore.RED,
+                    'color': "RED",
                     'parser': 'regexp',
                     'kwargs': {
                         'regex': '(?P<match_left>"version"\s*:\s*(?:"|\'))(?P<version>(?:(?:\d+)+.?)+)(?P<match_right>"|\')'
@@ -62,7 +62,7 @@ _INITIAL_CONFIG = {
                 },
                 {
                     'name': 'pom.xml',
-                    'color': Fore.MAGENTA,
+                    'color': "MAGENTA",
                     'parser': 'xml',
                     'kwargs': {
                         'xpaths': ['./mvn:version', './mvn:parent/mvn:version'],
