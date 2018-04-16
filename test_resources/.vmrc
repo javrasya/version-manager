@@ -1,10 +1,14 @@
 {
-  "files": [
-    {
-      "name": "test_files"
+  "groups": {
+    "test": {
+      "files": [
+        {
+          "name": "test_files"
+        }
+      ],
+      "excludes": [
+        "test_excludes"
+      ]
     }
-  ],
-  "excludes": [
-    "test_excludes"
-  ]
+  }
 }

@@ -1,5 +1,7 @@
 import os
 import re
+
+import itertools
 from repoze.lru import CacheMaker
 import semver
 from src.config import load_config
@@ -54,14 +56,24 @@ class File:
         self.update_version(new_version)
 
 
-loaded_files = []
+# loaded_files = []
 
 
 class FileLoader:
-    def __init__(self):
-        self.config = load_config()
-        self.files = self.config.get("files", [])
-        self.excludes = self.config.get("excludes", [])
+    def __init__(self, groups):
+        self._loaded_files = []
+        self.config = load_config(groups)
+
+    def _attrs(self, key):
+        return itertools.chain(*(v[key] for k, v in self.config.items()))
+
+    @property
+    def files(self):
+        return self._attrs("files")
+
+    @property
+    def excludes(self):
+        return self._attrs("excludes")
 
     def load(self):
         for dirpath, dirnames, files in os.walk('./'):
@@ -84,10 +96,13 @@ class FileLoader:
                     ParserClass = PARSER_REGISTRY.get(parser_type)
                     if ParserClass:
                         parser = ParserClass(*config_file.get('args', []), **config_file.get('kwargs', {}))
-                        loaded_files.append(File(config_file.get('name'), os.path.abspath(os.path.join(dirpath, f)), parser, color=color))
+                        self._loaded_files.append(File(config_file.get('name'), os.path.abspath(os.path.join(dirpath, f)), parser, color=color))
                     else:
                         raise Exception("No registered with parser type %s. Available parsers are %s" % (parser_type, ','.join(PARSER_REGISTRY.keys())))
 
+    @property
+    def loaded_files(self):
+        return sorted(self._loaded_files, key=lambda f: f.name)
 
-FileLoader().load()
-loaded_files = sorted(loaded_files, key=lambda f: f.name)
+# FileLoader().load()
+# loaded_files = sorted(loaded_files, key=lambda f: f.name)
