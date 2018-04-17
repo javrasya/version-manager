@@ -3,7 +3,7 @@
     "test": {
       "files": [
         {
-          "name": "test_files"
+          "names": ["test_files"]
         }
       ],
       "excludes": [

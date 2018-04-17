@@ -1,6 +1,7 @@
 import itertools
 import os
 import re
+from fnmatch import fnmatch
 
 import semver
 from colorama import Fore
@@ -19,7 +20,8 @@ version_pattern = re.compile(r'((\d)+.?)+')
 class File:
     supported_bumps = ['major', 'minor', 'patch']
 
-    def __init__(self, name, path, parser, color=Fore.WHITE):
+    def __init__(self, group, name, path, parser, color=Fore.WHITE):
+        self.group = group
         self.name = name
         self.path = path
         self.parser = parser
@@ -66,15 +68,15 @@ class FileLoader:
         self.config = load_config(groups)
 
     def _attrs(self, key):
-        return itertools.chain(*(v[key] for k, v in self.config.items()))
+        return {k: v[key] for k, v in self.config.items()}
 
     @property
-    def files(self):
+    def file_config_groups(self):
         return self._attrs("files")
 
     @property
     def excludes(self):
-        return self._attrs("excludes")
+        return itertools.chain(*self._attrs("excludes").values())
 
     def load(self):
         for dirpath, dirnames, files in os.walk('./'):
@@ -90,20 +92,21 @@ class FileLoader:
                     pass
 
             for f in files:
-                config_files = filter(lambda x: x.get('name') == f, self.files)
-                for config_file in config_files:
-                    parser_type = config_file.get('parser', 'regexp')
-                    color = eval("Fore." + config_file.get('color', "white").upper())
-                    ParserClass = PARSER_REGISTRY.get(parser_type)
-                    if ParserClass:
-                        parser = ParserClass(*config_file.get('args', []), **config_file.get('kwargs', {}))
-                        self._loaded_files.append(File(config_file.get('name'), os.path.abspath(os.path.join(dirpath, f)), parser, color=color))
-                    else:
-                        raise Exception("No registered with parser type %s. Available parsers are %s" % (parser_type, ','.join(PARSER_REGISTRY.keys())))
+                for group, file_configs in self.file_config_groups.items():
+                    config_files = filter(lambda fc: any(fnmatch(f, fcn) for fcn in fc.get('names')), file_configs)
+                    for config_file in config_files:
+                        parser_type = config_file.get('parser', 'regexp')
+                        color = eval("Fore." + config_file.get('color', "white").upper())
+                        ParserClass = PARSER_REGISTRY.get(parser_type)
+                        if ParserClass:
+                            parser = ParserClass(*config_file.get('args', []), **config_file.get('kwargs', {}))
+                            self._loaded_files.append(File(group, f, os.path.abspath(os.path.join(dirpath, f)), parser, color=color))
+                        else:
+                            raise Exception("No registered with parser type %s. Available parsers are %s" % (parser_type, ','.join(PARSER_REGISTRY.keys())))
 
     @property
     def loaded_files(self):
-        return sorted(self._loaded_files, key=lambda f: (f.color, f.name))
+        return sorted(self._loaded_files, key=lambda f: (f.group, f.name))
 
 # FileLoader().load()
 # loaded_files = sorted(loaded_files, key=lambda f: f.name)

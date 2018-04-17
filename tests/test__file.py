@@ -19,12 +19,12 @@ __author__ = 'ahmetdal'
 class test_File(TestCase):
     def setUp(self):
         parser = RegexParser(regex='(?P<match_left>"version"\s*:\s*(?:"))(?P<version>(?:(?:\d+)+.?)+)(?P<match_right>")')
-        self.file = File("test_file", os.path.join(dirname(dirname(__file__)), 'test_resources', 'test_file'), parser)
+        self.file = File("test", "test_file", os.path.join(dirname(dirname(__file__)), 'test_resources', 'test_file'), parser)
         self.file.update_version('0.2.0')
 
     def test_parser_none(self):
         try:
-            File("test_file", os.path.join(dirname(dirname(__file__)), 'test_resources', 'test_file'), None)
+            File("test", "test_file", os.path.join(dirname(dirname(__file__)), 'test_resources', 'test_file'), None)
             self.assertFalse(True)
         except Exception as e:
             self.assertEqual("Parser must be given.", str(e))
@@ -34,7 +34,7 @@ class test_File(TestCase):
         sys.stdout = out
         path = os.path.join(dirname(dirname(__file__)), 'test_resources', 'test_file')
         parser = RegexParser(regex='(?P<match_left>"version"\s*=\s*(?:"))(?P<version>(?:(?:\d+)+.?)+)(?P<match_right>")')
-        self.file = File("test_file", path, parser)
+        self.file = File("test", "test_file", path, parser)
         self.assertIsNone(self.file.current_version)
         self.assertEqual("%sNo version definition is found in file %s" % (Fore.WHITE, path), out.getvalue().strip())
 

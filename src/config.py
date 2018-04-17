@@ -18,7 +18,7 @@ _INITIAL_CONFIG = {
 
             'files': [
                 {
-                    'name': 'setup.py',
+                    'names': ['setup.py'],
                     'color': "GREEN",
                     'parser': 'regexp',
                     'kwargs': {
@@ -27,7 +27,7 @@ _INITIAL_CONFIG = {
 
                 },
                 {
-                    'name': 'conf.py',
+                    'names': ['conf.py'],
                     'color': "BLUE",
                     'parser': 'regexp',
                     'kwargs': {
@@ -36,7 +36,7 @@ _INITIAL_CONFIG = {
 
                 },
                 {
-                    'name': 'conf.py',
+                    'names': ['conf.py'],
                     'color': "BLUE",
                     'parser': 'regexp',
                     'kwargs': {
@@ -45,7 +45,7 @@ _INITIAL_CONFIG = {
 
                 },
                 {
-                    'name': 'bower.json',
+                    'names': ['bower.json'],
                     'color': "YELLOW",
                     'parser': 'regexp',
                     'kwargs': {
@@ -53,7 +53,7 @@ _INITIAL_CONFIG = {
                     }
                 },
                 {
-                    'name': 'package.json',
+                    'names': ['package.json'],
                     'color': "RED",
                     'parser': 'regexp',
                     'kwargs': {
@@ -61,7 +61,7 @@ _INITIAL_CONFIG = {
                     }
                 },
                 {
-                    'name': 'pom.xml',
+                    'names': ['pom.xml'],
                     'color': "MAGENTA",
                     'parser': 'xml',
                     'kwargs': {

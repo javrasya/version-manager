@@ -24,7 +24,7 @@ class test_Config(TestCase):
                 {
                     "files": [
                         {
-                            "name": "test_files"
+                            "names": ["test_files"]
                         }
                     ],
                     "excludes": [
