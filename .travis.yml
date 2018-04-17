@@ -5,7 +5,6 @@ env:
     PYTHONUNBUFFERED=yes
   matrix:
     - TOXENV=py2.7
-    - TOXENV=pypy
     - TOXENV=cov
 install:
   - pip install tox
@@ -14,3 +13,11 @@ script:
   - tox
 after_success:
   - coveralls
+deploy:
+  provider: pypi
+  user:
+    secure: "DPZXClpyKgwbctZVm7mBg9Gibb2I5Q8937Zpds4wCB4RCLyh7FgiZx7RaO6Hwphm98lqTo7hwi+GVxBFk2W6T9ttvNT45QKyAXe0SbTUTE7uw5aYQYn2i9+mN7ziuOPlMoMcPDsktdVW3hjQd4L6s4eSRD2XBtKxQIi3mxK6UrAWscK1bVs00/UbQsyX6yWysV0i6bRT+nb541/3IV9WYU0SZZpXrpLK7yMIvrkW7jISi4cdBP3dKncLG+myQVDHbGqkDF/nZCnu2VYie8x+TuGKtTBAAEVpU8WAkYlVel/CpveB5p6S7sUbyus4V0zlVS0+3C1Hcml1XSUagJGdFQ6WjGrqlQkrgDf+JKZQL11PchLOISqNGQS6fI8EVFrSmZcQZWzBMJRQRo4zvFUskrO72bZ9ppP/nGHUd8lLghmZmncJ1JqICRyOrxMvI0+WpURKD1asCmgEFFRS8waNknnyX33TvpYhoHgD1kAF9eIIKPduMlM9tsgF6pbBs7giwk59JMA2snbGbyIK2625rcp+HZpw4NRFPsp6PJF6bi9xZHhQztE9eqMIWN0dOjxQl0GjZi2m73q3iJhFE/P/HcttXue3n3GG82zenR2qq2iVWs46mSoQiuDXNE4CVLLfZoAmb8kLXuVurk2bkGL97MKQUVVVaeFCsFAchqmzu1w="
+  password:
+    secure: "cEdjr6BdZWwqfu0U8g/cB0HecNI94qW0IHDDXvPSkkno0o/syp8m7XTHPnUM1uw9vlkUvkZmM+dwEohHCp8h2cghb4IWJnsR/aqStkTj9h4I14HQ+LxOjPxe8ysAN+r/RRRgKrSzooeE1Vy0tBONNWyPoaoAJ9r1ozaI75n4c5NBMU+VotBxgRsdFUlaDwA4C2CBWjTScBKU7qohA8UpaKtyOBYFZW6SH5hQmgoDTtMLsbacCLd1N5EieE5aCGk6E91wXd1s98r/YnA9Y1Lq5bG79NOXkb/cm8aSKcfk4rfssGwIUHcPeRayiUunBWNk8VvVNlLqvdFHjgjTOwlcz7n6c6WHGJEulhmRNfiDCAHVz7mCL6eyudW0dMzZ0v0YleBncq0DHx7dDn966cgIcDao9S2aisP7V67ceoMBh3WEtBn57+Lb8e7iXiAzjq9nsON6iK8vXCJ+WUjYQ1D0fnOn3ZwEXzR2tjhyRc4g/ea7tMaP3/hWN7/a4S/xxZ6iMqoj+6Kg05g7YAAf444gCWvporc47+nH+gJ4k28+fr9UpmyKa5WEiBmbt68t4ruNNhVSdy5Yj9PskkEeo0Ex46bJ6NUE2oMDplQkP5kUaggLjJzVYk7SXZJGt879f1QwzSc2IiuPJqvUg/A5Ch7iSCIn5g3yt0PKyUzJxOMnEuI="
+  on:
+    tags: true
