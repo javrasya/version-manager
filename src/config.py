@@ -1,5 +1,6 @@
 from copy import deepcopy
 import json
+from fnmatch import fnmatch
 from os.path import expanduser
 from colorama import Fore
 
@@ -94,4 +95,4 @@ def load_config(groups):
         except IOError as e:
             pass
 
-    return {k: v for k, v in _LOADED_CONFIG["groups"].items() if k in groups}
+    return {k: v for k, v in _LOADED_CONFIG["groups"].items() if any(map(lambda g: fnmatch(k, g), groups))}
