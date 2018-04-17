@@ -31,7 +31,8 @@ setup(
     install_requires=[
         'repoze.lru',
         'colorama',
-        'semver'
+        'semver',
+        'terminaltables'
     ],
     include_package_data=True,
     entry_points=entrypoints,

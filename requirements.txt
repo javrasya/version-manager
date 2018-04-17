@@ -1,3 +1,4 @@
+terminaltables
 repoze.lru
 colorama
 semver

@@ -1,6 +1,14 @@
 import argparse
 
+import os
+
+import itertools
+
+from colorama import Fore
+
+from src.helper import console
 from src.file import FileLoader
+from terminaltables import AsciiTable
 
 
 def main():
@@ -28,18 +36,41 @@ def get_loader(groups):
 
 
 def status(groups):
-    for file in get_loader(groups).loaded_files:
-        print("%sFile %s version is %s\n" % (file.color, file.path, file.current_version))
+    loaded_files = get_loader(groups).loaded_files
+    for group, files in itertools.groupby(loaded_files, key=lambda f: f.group):
+        console.print_data(
+            ['File', 'Version', 'Path'],
+            map(lambda f: [f.color + f.name, f.current_version, f.path.replace(os.getcwd(), ".").replace(f.name, "")], files),
+            title=group
+        )
 
 
 def set(version, groups):
-    for file in get_loader(groups).loaded_files:
-        file.update_version(version)
+    loaded_files = get_loader(groups).loaded_files
+    for group, files in itertools.groupby(loaded_files, key=lambda f: f.group):
+        table_data = []
+        for f in files:
+            f.update_version(version)
+            table_data.append([f.color + f.name, f.current_version, f.previous_version, f.path.replace(os.getcwd(), ".").replace(f.name, "")])
+        console.print_data(
+            ['File', 'New Version', 'Old Version', 'Path'],
+            table_data,
+            title=group
+        )
 
 
 def bump(level, groups):
-    for file in get_loader(groups).loaded_files:
-        file.bump_version(level)
+    loaded_files = get_loader(groups).loaded_files
+    for group, files in itertools.groupby(loaded_files, key=lambda f: f.group):
+        table_data = []
+        for f in files:
+            f.bump_version(level)
+            table_data.append([f.color + f.name, f.current_version, f.previous_version, f.path.replace(os.getcwd(), ".").replace(f.name, "")])
+        console.print_data(
+            ['File', 'New Version', 'Old Version', 'Path'],
+            table_data,
+            title=group
+        )
 
 
 if __name__ == '__main__':  # pragma: no cover
