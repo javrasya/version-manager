@@ -24,3 +24,5 @@ target
 build/
 dist/
 .coverage
+.DS_Store
+.cache
