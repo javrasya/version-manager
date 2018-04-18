@@ -29,7 +29,7 @@ _INITIAL_CONFIG = {
                 },
                 {
                     'names': ['conf.py'],
-                    'color': "BLUE",
+                    'color': "lightblue_ex",
                     'parser': 'regexp',
                     'kwargs': {
                         'regex': '(?P<match_left>version\s*=\s*(?:"|\'))(?P<version>(?:(?:\d+)+.?)+)(?P<match_right>"|\')'
@@ -38,7 +38,7 @@ _INITIAL_CONFIG = {
                 },
                 {
                     'names': ['conf.py'],
-                    'color': "BLUE",
+                    'color': "lightblue_ex",
                     'parser': 'regexp',
                     'kwargs': {
                         'regex': '(?P<match_left>release\s*=\s*(?:"|\'))(?P<version>(?:(?:\d+)+.?)+)(?P<match_right>"|\')'
