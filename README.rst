@@ -4,15 +4,15 @@
 .. |Coverage Status| image:: https://coveralls.io/repos/github/javrasya/version-manager/badge.svg?branch=master
    :target: https://coveralls.io/github/javrasya/version-manager?branch=master
 
-.. |Current Status GIF|  image:: https://cloud.githubusercontent.com/assets/1279644/10024585/9cd838f4-6160-11e5-9ef6-e53fb93e420c.gif
+.. |Current Status GIF|  image:: https://user-images.githubusercontent.com/1279644/38930120-0fb9d5c0-430f-11e8-9f1d-918444af2cdc.gif
 
-.. |Set Version GIF|  image:: https://cloud.githubusercontent.com/assets/1279644/10024586/9cdb2eec-6160-11e5-9116-16d60c122eee.gif
+.. |Set Version GIF|  image:: https://user-images.githubusercontent.com/1279644/38930124-10243276-430f-11e8-8b5d-dd881e479a9f.gif
 
-.. |Bump Patch Version GIF|  image:: https://cloud.githubusercontent.com/assets/1279644/10024588/9ce09044-6160-11e5-81e1-b2c4d743b137.gif
+.. |Bump Patch Version GIF|  image:: https://user-images.githubusercontent.com/1279644/38930121-0fd405b2-430f-11e8-8d90-33a197f78d82.gif
 
-.. |Bump Minor Version GIF|  image:: https://cloud.githubusercontent.com/assets/1279644/10024587/9ce077f8-6160-11e5-9252-4a154ac4734d.gif
+.. |Bump Minor Version GIF|  image:: https://user-images.githubusercontent.com/1279644/38930122-0fef8490-430f-11e8-9e8a-8aafe6d8b178.gif
 
-.. |Bump Major Version GIF|  image:: https://cloud.githubusercontent.com/assets/1279644/10024583/9ca330fa-6160-11e5-962e-ec63bef155fd.gif
+.. |Bump Major Version GIF|  image:: https://user-images.githubusercontent.com/1279644/38930123-1009614e-430f-11e8-97bf-ffb91c06fb92.gif
 
 
 ***************
@@ -125,36 +125,120 @@ or
 
 .. code-block:: json
 
-    {
-      files : [
-                  {
-                        'name': 'my_custom_file.txt',
-                        'parser': 'regexp',
-                        'kwargs':{
-                              'regex': '(?P<match_left>version=")(?P<version>\d+)(?P<match_right>")'
-                        }
-                  },
-                  {
-                        'name': 'my_custom_file.xml',
-                        'parser': 'xml',
-                        'kwargs':{
-                              'xpaths': ['./ns:path1/ns:version'],
-                              'namespaces':{'my_namespace':'my-name-space-uri'}
-                        }
-                  }           
-            ]
-    }
+   {
+     "groups": {
+       "eu_prod": {
+         "files": [
+           {
+             "names": [
+               "*-prod-eu.properties"
+             ],
+             "parser": "regexp",
+             "color": "yellow",
+             "kwargs": {
+               "regex": "(?P<match_left>my_version=)(?P<version>\\d+\\.\\d+\\.\\d+)(?P<match_right>\\n)"
+             }
+           },
+           {
+             "names": [
+               "*-prod-eu-1.sql",
+               "*-prod-eu-2.sql"
+             ],
+             "version_separator": "x",
+             "parser": "regexp",
+             "color": "lightyellow_ex",
+             "kwargs": {
+               "regex": "(?P<match_left>dependent_silo_eu_v)(?P<version>\\d+x\\d+x\\d+)(?P<match_right>_HIVE)"
+             }
+           }
+         ]
+       },
+       "us_prod": {
+         "files": [
+           {
+             "names": [
+               "*-prod-eu.properties"
+             ],
+             "parser": "regexp",
+             "color": "yellow",
+             "kwargs": {
+               "regex": "(?P<match_left>my_version=)(?P<version>\\d+\\.\\d+\\.\\d+)(?P<match_right>\\n)"
+             }
+           },
+           {
+             "names": [
+               "*-prod-us-1.sql",
+               "*-prod-us-2.sql",
+               "*-prod-us-3.sql"
+             ],
+             "version_separator": "x",
+             "parser": "regexp",
+             "color": "lightyellow_ex",
+             "kwargs": {
+               "regex": "(?P<match_left>dependent_silo_us_v)(?P<version>\\d+x\\d+x\\d+)(?P<match_right>_HIVE)"
+             }
+           }
+         ]
+       },
+       "staging": {
+         "files": [
+           {
+             "names": [
+               "*-staging-*.properties"
+             ],
+             "parser": "regexp",
+             "color": "yellow",
+             "kwargs": {
+               "regex": "(?P<match_left>my_version=)(?P<version>\\d+\\.\\d+\\.\\d+)(?P<match_right>\\n)"
+             }
+           },
+           {
+             "names": [
+               "*-staging-*-1.sql",
+               "*-staging-*-2.sql"
+             ],
+             "version_separator": "x",
+             "parser": "regexp",
+             "color": "lightyellow_ex",
+             "kwargs": {
+               "regex": "(?P<match_left>dependent_silo_staging_v)(?P<version>\\d+x\\d+x\\d+)(?P<match_right>_HIVE)"
+             }
+           }
+         ]
+       }
+     }
+   }
 
 
 Any famous file formats can be demanded as built-in by opening an issue. Feel free to demand it :-)
+
+To run a command for specific group;
+
+.. code-block:: bash
+
+    $ # To check files specific to eu_prod and staging
+    $ versionmanager --groups eu_prod,staging --status
+
+    $ # To check files specific to all prod environments
+    $ versionmanager --groups "*_prod" --status
 
 
 
 Change Logs
 ===========
 
-0.6.0(Stable)
+0.8.4(Stable)
 -------------
+
+* **Improvement** - Print outputs in tabular format
+* **Improvement** - Support giving the group which is demanded to be used. Multiple group names can be given. Wildcard is also supported
+* **Improvement** - Support being able to define different groups for custom version files
+* **Improvement** - Support wildcard for file names in `.vmrc`
+* **Improvement** - Support defining multiple file names for single regex in `.vmrc`
+
+
+0.6.0
+-----
 
 * **Improvement** - ``current_version`` and ``update_version`` are merged as subcomment under ``versionmanager`` consolescript. ``versionmanager --status``, ``versionmanager --set <version>`` and ``versionmanager --bump <level>`` are available instead of ``current_version`` and ``update_version <version>`` .
 * **Improvement** - SemVer support is added for bump versioning. ``versionmanager --bump <level>`` which level is one among (``major``,``minor``,``patch``)
