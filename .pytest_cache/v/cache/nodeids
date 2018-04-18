@@ -1,0 +1,19 @@
+[
+  "tests/test__config.py::test_Config::test_load_config", 
+  "tests/test__config.py::test_Config::test_load_config_with_vmrc", 
+  "tests/test__file.py::test_File::test_bump_version", 
+  "tests/test__file.py::test_File::test_current_version", 
+  "tests/test__file.py::test_File::test_no_version_definition_is_found", 
+  "tests/test__file.py::test_File::test_parser_none", 
+  "tests/test__file.py::test_File::test_update_version", 
+  "tests/test__file.py::test_File::test_update_with_invalid_version", 
+  "tests/test__file_loader.py::test_FileLoader::test_load_files", 
+  "tests/test__file_loader.py::test_FileLoader::test_load_files_with_no_files", 
+  "tests/parser/test__regex.py::testRegexParser::test_current_version", 
+  "tests/parser/test__regex.py::testRegexParser::test_regex_is_none", 
+  "tests/parser/test__regex.py::testRegexParser::test_update_version", 
+  "tests/parser/test__regex.py::testRegexParser::test_update_with_invalid_version", 
+  "tests/parser/test__xml.py::testXmlParser::test_current_version", 
+  "tests/parser/test__xml.py::testXmlParser::test_update_version", 
+  "tests/parser/test__xml.py::testXmlParser::test_xpath_is_none"
+]

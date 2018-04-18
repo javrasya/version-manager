@@ -1,26 +1,21 @@
 import argparse
-
+import itertools
 import os
 
-import itertools
-
-from colorama import Fore
-
-from src.helper import console
 from src.file import FileLoader
-from terminaltables import AsciiTable
+from src.helper import console
 
 
 def main():
     parser = argparse.ArgumentParser(description='Process some integers.')
-    parser.add_argument('--groups', help='To run specific group of files', default="default")
+    parser.add_argument('--groups', help='To run specific group of files', default=None)
     parser.add_argument('--status', action='store_true', help='To see current status of versioning files')
     parser.add_argument('--set', help='To set specific version into version files. (--set 3.5.1)')
     parser.add_argument('--bump', choices=['major', 'minor', 'patch'],
                         help='To bump version defined as SemVer. Choices are ["major", "minor", "patch"] (--bump major)')
 
     args = parser.parse_args()
-    groups = args.groups.split(",")
+    groups = args.groups.split(",") if args.groups else None
     if args.status:
         status(groups)
     elif args.set:

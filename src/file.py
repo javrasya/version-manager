@@ -112,7 +112,7 @@ class FileLoader:
 
     @property
     def loaded_files(self):
-        return sorted(self._loaded_files, key=lambda f: (f.group, f.path, f.name))
+        return sorted(self._loaded_files, key=lambda f: (f.group, f.color, f.path, f.name))
 
 # FileLoader().load()
 # loaded_files = sorted(loaded_files, key=lambda f: f.name)

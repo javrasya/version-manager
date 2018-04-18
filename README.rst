@@ -126,6 +126,9 @@ or
 .. code-block:: json
 
    {
+     "default_groups" :[
+         "staging"
+     ],
      "groups": {
        "eu_prod": {
          "files": [
@@ -227,8 +230,13 @@ To run a command for specific group;
 Change Logs
 ===========
 
-0.8.4(Stable)
+0.8.5(Stable)
 -------------
+
+* **Improvement** - Support overriding default groups in `.vmrc`
+
+0.8.4
+-----
 
 * **Improvement** - Print outputs in tabular format
 * **Improvement** - Support giving the group which is demanded to be used. Multiple group names can be given. Wildcard is also supported
