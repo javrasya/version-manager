@@ -93,8 +93,8 @@ def load_config(groups):
             with open("%s%s" % (lookup_path, _RC_FILE)) as f:
                 config = json.loads(f.read())
                 _LOADED_CONFIG["groups"].update(config.get("groups", {}))
-                groups = groups if groups else config.get("default_groups", _LOADED_CONFIG.get("default_groups", ["default"]))
+                groups = groups if groups else config.get("default_groups", _LOADED_CONFIG.get("default_groups", None))
         except IOError as e:
             pass
 
-    return {k: v for k, v in _LOADED_CONFIG["groups"].items() if any(map(lambda g: fnmatch(k, g), groups))}
+    return {k: v for k, v in _LOADED_CONFIG["groups"].items() if any(map(lambda g: fnmatch(k, g), groups or ["default"]))}
