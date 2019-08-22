@@ -26,3 +26,4 @@ dist/
 .coverage
 .DS_Store
 .cache
+.pytest_cache
