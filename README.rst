@@ -226,7 +226,6 @@ To run a command for specific group;
     $ versionmanager --groups "*_prod" --status
 
 
-
 Change Logs
 ===========
 
@@ -265,3 +264,8 @@ Change Logs
 * **Improvement** - ``Sphinx`` ``conf.py`` support is added.
 * **Improvement** - README file is in rst format now.
 
+
+LICENCE
+=======
+
+MIT
